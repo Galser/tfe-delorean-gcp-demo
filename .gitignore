@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# TF lock files (from new TF 0.14 ) 
+.terraform.lock.hcl
+
 # Crash log files
 crash.log
 
@@ -27,3 +30,10 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+#
+
+# keys
+*.pem
+
+# MacOS Specific
+.DS_Store

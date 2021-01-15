@@ -1,7 +1,17 @@
-# null resource firewall_gcp
-resource null_resource "firewall_gcp" {
-}
+resource "google_compute_firewall" "default" {
+  name    = "tfe-firewall"
+  network = "default"
 
-output "firewall_gcp" {
-  value = "from firewall_gcp"
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "443", "6379", "8200", "8201"]
+    # do we need "6443" ? 
+    
+  }
+
+  // source_tags = ["web"]
 }

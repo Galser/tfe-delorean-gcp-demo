@@ -36,3 +36,9 @@ variable "region" {
   description = "Region for DB"
   # No default!!
 }
+
+
+variable "network_id" {
+  type = string
+  description = "ID of network to use"
+}

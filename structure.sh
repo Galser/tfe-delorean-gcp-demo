@@ -2,7 +2,7 @@
 
 # name of this project
 project=""tfe-delorean-gcp-demo
-modules="compute_gcp compute_instance_group dns_cloudflare firewall_gcp lb_gcp redis_gcp sslcert_letsencrypt db_gcp"
+modules="compute_gcp compute_instance_group dns_cloudflare firewall_gcp lb_gcp redis_gcp sslcert_letsencrypt db_gcp network_gcp objectstorage_gcp"
 files="provider.tf main.tf variables.tf terraform.tfvars"
 
 # -- do not change --

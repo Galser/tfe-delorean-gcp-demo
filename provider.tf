@@ -19,6 +19,16 @@ provider "google" {
   zone    = var.availabilityZone
 }
 
+provider "google-beta" {
+	#  version     = "~> 3.0"
+  credentials = file(var.credentials_file)
+
+  region  = var.region
+  project = var.project
+  zone    = var.availabilityZone
+}
+
+
 provider "acme" {
   # PRODUCTION
 #  version    = "~> 1.0"

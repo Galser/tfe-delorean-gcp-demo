@@ -1,4 +1,4 @@
-module "db_gcp" {
+/* module "db_gcp" {
   source = "./modules/db_gcp/"
   name = var.tfe_name
   username = var.db_admin
@@ -8,4 +8,4 @@ module "db_gcp" {
 
 output "db_gcp" {
   value = module.db_gcp.postgres_config
-}
+} */

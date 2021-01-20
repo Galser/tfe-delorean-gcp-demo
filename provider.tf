@@ -28,7 +28,6 @@ provider "google-beta" {
   zone    = var.availabilityZone
 }
 
-
 provider "acme" {
   # PRODUCTION
 #  version    = "~> 1.0"
@@ -39,4 +38,4 @@ provider "acme" {
 
 provider "cloudflare" {
   #  version = "~> 2.0"
-}
+} 

@@ -1,7 +1,26 @@
-# null resource compute_instance_group
-resource null_resource "compute_instance_group" {
-}
+# Compute Instance Group (GCP) module code
+resource "google_compute_instance_group" "ptfe_group" {
+  name      = "${var.name}-tfe-instance-group"
+  zone      = var.availabilityZone
+  instances = var.instances
 
-output "compute_instance_group" {
-  value = "from compute_instance_group"
+  named_port {
+    name = "tfe-http-install"
+    port = "80"
+  }
+
+  named_port {
+    name = "tfe-https"
+    port = "443"
+  }
+
+  # The port below not required for TFE Active-Active
+  named_port {
+    name = "replicated-dashboard-https"
+    port = "8800"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

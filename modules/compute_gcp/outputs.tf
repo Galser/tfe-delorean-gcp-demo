@@ -1,4 +1,4 @@
-output "compute_gcp" {
+output "instance_data" {
   value = {
     link         = google_compute_instance.ptfe.self_link
     id           = google_compute_instance.ptfe.id

@@ -1,8 +1,7 @@
 # Redis GCP module OUTPUTS
-output "host" {
-  value = google_redis_instance.redis_gcp.host
-}
-
-output "port" {
-  value = google_redis_instance.redis_gcp.port
+output "redis_config" {
+ value = {
+  host = google_redis_instance.redis_gcp.host
+  port = google_redis_instance.redis_gcp.port
+ }
 }

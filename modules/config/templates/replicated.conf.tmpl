@@ -1,0 +1,24 @@
+{
+        "DaemonAuthenticationType":     "password",
+        "DaemonAuthenticationPassword": "${replicated_console_password}",
+%{ if airgap == true ~}
+    "LicenseBootstrapAirgapPackagePath": "/var/lib/tfe/tfe.airgap",
+%{ endif ~}
+    "TlsBootstrapType":             "${tls_boostrap_type}",
+%{ if tls_boostrap_type == "server-path" ~}
+    "TlsBootstrapHostname":         "${hostname}",
+%{ endif ~}
+%{ if tls_boostrap_type != "self-signed" ~}
+    "TlsBootstrapCert":             "${tls_boostrap_cert}",
+    "TlsBootstrapKey":              "${tls_boostrap_key}",
+%{ endif ~}
+%{ if release_sequence != "latest" ~}
+    "ReleaseSequence":                   "${release_sequence}",
+%{ endif ~}
+%{ if channel_id != "default" ~}
+    "LicenseBootstrapChannelID":         "${channel_id}",
+%{ endif ~}
+    "ImportSettingsFrom":           "/etc/tfe-settings.json",
+    "LicenseFileLocation":          "/etc/tfe-license.rli"
+    "BypassPreflightChecks":        true,
+}

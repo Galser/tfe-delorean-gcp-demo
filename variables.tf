@@ -58,3 +58,19 @@ variable "db_admin" {
   type = string
   default = "hashicorp"
 }
+
+
+// License & releases
+variable "license_file" {
+  type = string
+}
+
+variable "release_sequence" {
+  default = "latest"
+  description = "The sequence ID for the Terraform Enterprise version to pin (щк тще)"
+}
+
+variable "channel_id" {
+  default = "default"
+}
+// 

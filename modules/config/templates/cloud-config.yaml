@@ -1,0 +1,38 @@
+#cloud-config
+write_files:
+
+# our install.sh that will run one first boot
+- path: /var/lib/cloud/scripts/per-once/install-tfe.sh
+  owner: root:root
+  permissions: "0555"
+  encoding: b64
+  content: ${install_tfe_sh}
+
+# tfe license file
+- path: /etc/replicated.rli
+  owner: root:root
+  permissions: "0444"
+  encoding: b64
+  content: ${license_b64}
+
+# settings.json for tfe
+- path: /etc/ptfe-settings.json
+  owner: root:root
+  permissions: "0644"
+  encoding: b64
+  content: ${tfe-conf}
+
+# replicated.json for replicated
+- path: /etc/replicated.conf
+  owner: root:root
+  permissions: "0644"
+  encoding: b64
+  content: ${replicated-conf}
+
+# Package install for ubuntu
+packages:
+- jq
+- chrony
+- ipvsadm
+- unzip
+- wget

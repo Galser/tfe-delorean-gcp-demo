@@ -6,6 +6,9 @@ module "compute_gcp" {
   public_key_path = var.public_key_path
 	network = module.network_gcp.network.name
 	subnetwork = module.network_gcp.network.subnet
+  replicated_config = module.config.replicated_config
+  tfe_config = module.config.tfe_config
+  cloudinit = module.config.cloudinit
 //	subnetwork = "tfe-aa-subnet"
 }
 

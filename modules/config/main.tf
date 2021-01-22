@@ -4,11 +4,40 @@ resource "random_string" "replicated_console_password" {
   special = false
 }
 
+data "template_file" "cloud_init_config" {
+  template = file("${path.module}/templates/cloud-config.yaml")
+  
+  #gzip          = false // for GCP 
+  #base64_encode = false // for GCP 
+
+  vars = {
+#    tfe_install_url = var.tfe_install_url
+#    distribution    = var.distribution
+    license_b64     = filebase64(var.license_file)
+    install_tfe_sh  = base64encode(file("${path.module}/scripts/provision.sh"))
+
+    replicated-conf     = base64encode(data.template_file.replicated_config.rendered)
+    tfe-conf = base64encode(data.template_file.tfe_config.rendered)
+  }
+}
+
+data "template_cloudinit_config" "cloud_init_config" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    content_type = "text/cloud-config"
+    content      = data.template_file.cloud_init_config.rendered
+  }
+}
+
+
 data "template_file" "replicated_config" {
   template = file("${path.module}/templates/replicated.conf.tmpl")
 
   vars = {
     airgap           = false
+    tls_boostrap_type = "self-signed"
     hostname         = var.hostname
     replicated_console_password = random_string.replicated_console_password.result
     release_sequence = var.release_sequence

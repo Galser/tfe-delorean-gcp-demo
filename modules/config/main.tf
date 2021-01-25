@@ -17,7 +17,7 @@ data "template_file" "cloud_init_config" {
     install_tfe_sh  = base64encode(file("${path.module}/scripts/provision.sh"))
 
     replicated-conf     = base64encode(data.template_file.replicated_config.rendered)
-    tfe-conf = base64encode(data.template_file.tfe_config.rendered)
+    tfe_conf = base64encode(data.template_file.tfe_config.rendered)
   }
 }
 

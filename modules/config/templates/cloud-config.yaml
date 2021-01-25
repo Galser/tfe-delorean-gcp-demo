@@ -9,18 +9,18 @@ write_files:
   content: ${install_tfe_sh}
 
 # tfe license file
-- path: /etc/replicated.rli
+- path: /etc/tfe-license.rli
   owner: root:root
   permissions: "0444"
   encoding: b64
   content: ${license_b64}
 
 # settings.json for tfe
-- path: /etc/ptfe-settings.json
+- path: /etc/tfe-settings.json
   owner: root:root
   permissions: "0644"
   encoding: b64
-  content: ${tfe-conf}
+  content: ${tfe_conf}
 
 # replicated.json for replicated
 - path: /etc/replicated.conf

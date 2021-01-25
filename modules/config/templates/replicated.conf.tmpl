@@ -1,6 +1,6 @@
 {
-        "DaemonAuthenticationType":     "password",
-        "DaemonAuthenticationPassword": "${replicated_console_password}",
+    "DaemonAuthenticationType":     "password",
+    "DaemonAuthenticationPassword": "${replicated_console_password}",
 %{ if airgap == true ~}
     "LicenseBootstrapAirgapPackagePath": "/var/lib/tfe/tfe.airgap",
 %{ endif ~}
@@ -19,6 +19,6 @@
     "LicenseBootstrapChannelID":         "${channel_id}",
 %{ endif ~}
     "ImportSettingsFrom":           "/etc/tfe-settings.json",
-    "LicenseFileLocation":          "/etc/tfe-license.rli"
-    "BypassPreflightChecks":        true,
+    "LicenseFileLocation":          "/etc/tfe-license.rli",
+    "BypassPreflightChecks":        true
 }

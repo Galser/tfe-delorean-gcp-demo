@@ -1,90 +1,78 @@
-${jsonencode({
-    "ca_certs": {},
-    "capacity_concurrency": {
-        "value": "10"
-    },
-    "capacity_memory": {
-        "value": "512"
-    },
-    "custom_image_tag": {
-        "value": "hashicorp/build-worker:now"
-    },
-    "disk_path": {},
-    "enable_active_active": {},
-    "enable_metrics_collection": {
-        "value": "1"
-    },
-    "enc_password": {
-        "value": "WObhkPcmRMHlWL5f4F5cIjIqHwMMA2jv-NzoMn9gPz7W_ud1V-123"
-    },
-    "extra_no_proxy": {},
-    "gcs_bucket": {
-        "value": "agtfemigtest" // temp
-    },
-    "gcs_credentials": {
-        "value": "" // temp
-    },
-    "gcs_project": {
-        "value": "ag-tfe-v4-playground" // temp
-    },
-    "hairpin_addressing": {}, // maybe usefull
-    "hostname": {
-        "value": "tfe-migtest-2.guselietov.com"  // temp
-    },
-    "iact_subnet_time_limit": {
-        "value": "60"
-    },
+{
     "installation_type": {
         "value": "production"
     },
-    "pg_dbname": {
-        "value": "migtest"
-    },
-    "pg_extra_params": {
-        "value": "sslmode=require"
-    },
-    "pg_netloc": {
-        "value": "35.232.117.237"
-    },
-    "pg_password": {
-        "value": "basd98asdf_q23"
-    },
-    "pg_user": {
-        "value": "postgres"
-    },
-    "placement": {
-        "value": "placement_gcs"
+    "hostname": {
+        "value": "${hostname}"
     },
     "production_type": {
         "value": "external"
     },
-    "rabbitmq_host": {
-        "value": "rabbitmq.ptfe"
+    "placement": {
+        "value": "placement_gcs"
     },
-    "rabbitmq_port": {
-        "value": "5672"
+    "enc_password": {
+        "value": "${enc_password}"
     },
-    "rabbitmq_protocol": {
-        "value": "amqp://"
+    "pg_user": {
+        "value": "${pg_user}"
     },
-    "rabbitmq_username": {
-        "value": "hashicorp"
+    "pg_password": {
+        "value": "${pg_password}"
     },
-    "rabbitmq_vhost": {
-        "value": "hashicorp"
+    "pg_netloc": {
+        "value": "${pg_netloc}"
     },
-    "redis_host": {},
-    "redis_pass": {
-        "value": "93lSgqoOoFYzKYbLnVsjeRfFw9VRrOJd"
+    "pg_dbname": {
+        "value": "${pg_dbname}"
     },
-    "redis_port": {},
-    "redis_use_password_auth": {},
-    "redis_use_tls": {},
-    "tbw_image": {
-        "value": "default_image"
+    "pg_extra_params": {
+        "value": "${pg_extra_params}"
     },
-    "tls_vers": {
-        "value": "tls_1_2_tls_1_3"
+    "gcs_bucket": {
+        "value": "${gcs_bucket}"
+    },
+    "gcs_credentials": {
+        "value": ${jsonencode(gcs_credentials)}
+    },
+    "gcs_project": {
+        "value": "${gcs_project}"
+    },
+    "enable_active_active" : {
+        "value": "0"
+    },
+    "redis_host" : {
+        "value": "${redis_host}"
+    },
+    "redis_port" : {
+        "value": "${redis_port}"
+    },
+    "redis_use_password_auth" : {
+        "value": "0"
+    },
+    "redis_use_tls" : {
+        "value": "0"
+    },
+    "iact_subnet_list": {
+        "value": "0.0.0.0/0"
+    },
+    "iact_subnet_time_limit": {
+        "value": "unlimited"
+    },
+    "install_id": {
+        "value": "${install_id}"
+    },
+    "root_secret": {
+        "value": "${root_secret}"
+    },
+    "registry_session_encryption_key": {
+        "value": "${registry_session_encryption_key}"
+    },
+    "registry_session_secret_key": {
+        "value": "${registry_session_secret_key}"
+    },
+    "cookie_hash": {
+        "value": "${cookie_hash}"
     },
     "user_token": {
         "value": "${user_token}"
@@ -97,5 +85,5 @@ ${jsonencode({
     },
     "backup_token": {
         "value": "${backup_token}"
-    }    
-})}
+    }
+}

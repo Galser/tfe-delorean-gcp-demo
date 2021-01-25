@@ -29,6 +29,7 @@ which curl || (
 
 tfe_install_url="https://install.terraform.io/ptfe/stable"
 echo "Downloading install.sh from ${tfe_install_url}"
+sudo mkdir -p /etc/tfe
 sudo curl -o /etc/tfe/install.sh $tfe_install_url
 sudo chmod +x /etc/tfe/install.sh
 

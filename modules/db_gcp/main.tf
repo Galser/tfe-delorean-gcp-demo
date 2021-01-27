@@ -55,23 +55,23 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 
 resource "google_sql_database_instance" "tfemaster" {
-  provider = google-beta
-  name             = local.db_name
-  database_version = "POSTGRES_9_6"
-  region           = var.region
+  provider            = google-beta
+  name                = local.db_name
+  database_version    = "POSTGRES_9_6"
+  region              = var.region
   deletion_protection = false
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
-  
+
 
   settings {
     # Second-generation instance tiers are based on the machine
     # type. See argument reference below.
-    disk_size = 50
-    tier      = "db-f1-micro" # or ? "db-g1-small"
+    disk_size         = 50
+    tier              = "db-f1-micro" # or ? "db-g1-small"
     availability_type = "REGIONAL"
     ip_configuration {
-      ipv4_enabled = false
+      ipv4_enabled    = false
       private_network = var.network_id
       authorized_networks {
         name  = "all"

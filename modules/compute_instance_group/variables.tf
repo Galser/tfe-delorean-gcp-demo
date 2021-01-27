@@ -6,10 +6,10 @@ variable "name" {
 
 variable "instances" {
   description = "List of instances to attach into group"
-  type        = list
+  type        = list(any)
   default     = []
 }
 
 variable "availabilityZone" {
-  type        = string
+  type = string
 }

@@ -20,7 +20,7 @@ resource "google_compute_instance" "ptfe" {
 
 
   network_interface {
-    network = var.network
+    network    = var.network
     subnetwork = var.subnetwork
     access_config {
     }
@@ -29,7 +29,7 @@ resource "google_compute_instance" "ptfe" {
   metadata = {
     ssh-keys = "ubuntu:${file("${var.public_key_path}")}"
     # user-data* -> Cloud Init Supported OS
-    user-data          = var.cloudinit
+    user-data = var.cloudinit
     #user-data-encoding = var.cloudinit.encoding
   }
 
@@ -39,8 +39,8 @@ resource "google_compute_instance" "ptfe" {
     private_key = file(var.key_path)
     host        = self.network_interface.0.access_config.0.nat_ip
   }
-  
-/*  provisioner "file" {
+
+  /*  provisioner "file" {
     content = var.replicated_config
     destination = "/etc/replicated.conf"
   }

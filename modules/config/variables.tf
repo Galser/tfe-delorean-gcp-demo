@@ -29,7 +29,7 @@ variable "tls_boostrap_key" {
 }
 
 variable "release_sequence" {
-  default = "latest"
+  default     = "latest"
   description = "The sequence ID for the Terraform Enterprise version to pin (щк тще)"
 }
 

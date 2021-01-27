@@ -39,6 +39,6 @@ variable "region" {
 
 
 variable "network_id" {
-  type = string
+  type        = string
   description = "ID of network to use"
 }

@@ -51,13 +51,16 @@ You can read more about service account keys in [Google's documentation](https:/
 
 # TODO
 - [x] import code for compute infrastructure
-- [ ] add DB deploy
-- [ ] add object storage deploy
-- [ ] add LB deploy
-- [ ] add Memory storage deploy (Memorystore aka Redis)
-- [ ] install TFE in Prod mode
-- [ ] test TFE behind LB
-- [ ] test VCS integration
+- [x] add DB deploy
+- [x] add object storage deploy
+- [x] add LB deploy
+- [x] add Memory storage deploy (Memorystore aka Redis)
+- [x] install TFE in Prod mode
+- [x] test TFE behind LB
+- [x] test VCS integration
+- [x] update README
+- [ ] add initial admin deployment
+- [ ] add second node
 - [ ] update README
 - [ ] destroy all and re-run using instructions, fix README if required
 

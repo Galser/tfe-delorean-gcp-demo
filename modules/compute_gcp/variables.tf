@@ -4,29 +4,29 @@ variable "name" {
 }
 
 variable "image" {
-  type = string
+  type    = string
   default = "ubuntu-os-cloud/ubuntu-1804-lts"
 }
 
 variable "instance_type" {
-  type = string
+  type        = string
   description = "Type of instance"
   default     = "n1-standard-4"
 }
 
 
 variable "availabilityZone" {
-  type = string
+  type        = string
   description = "Availability zone"
 }
 
 variable "key_path" {
-  type = string
+  type        = string
   description = "Local SSH key path (private part)"
 }
 
 variable "public_key_path" {
-  type = string
+  type        = string
   description = "Local SSH key path (public part)"
 }
 

@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "ip_allow_list" {
-  type        = list
+  type        = list(any)
   description = "IP CIDRs to alow. Defaults to the entire world for nbw."
   default     = ["0.0.0.0/0"]
 }

@@ -1,8 +1,8 @@
 output "instance_data" {
   value = {
-    link         = google_compute_instance.ptfe.self_link
-    id           = google_compute_instance.ptfe.id
-    public_ip   = google_compute_instance.ptfe.network_interface.0.access_config.0.nat_ip
+    link      = google_compute_instance.ptfe.self_link
+    id        = google_compute_instance.ptfe.id
+    public_ip = google_compute_instance.ptfe.network_interface.0.access_config.0.nat_ip
   }
 }
- 
+

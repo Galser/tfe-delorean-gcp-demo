@@ -20,12 +20,12 @@ variable "availabilityZone" {
 // The ones that by default should be avaible in CloudFlare
 // for _this_ example
 variable "site_domain" {
-  type = string
+  type    = string
   default = "guselietov.com"
 }
 
 variable "tfe_name" {
-  type = string
+  type    = string
   default = "tfe-aa"
 }
 
@@ -45,17 +45,17 @@ variable "cidrs" {
 
 # Optionals but usefull
 variable "vpc_tag" {
-  type = string
+  type    = string
   default = "ag_tfe_delorean"
 }
 
 variable "disks_tag" {
-  type = string
+  type    = string
   default = "ag_tfe_delorean"
 }
 
 variable "db_admin" {
-  type = string
+  type    = string
   default = "hashicorp"
 }
 
@@ -66,7 +66,7 @@ variable "license_file" {
 }
 
 variable "release_sequence" {
-  default = "latest"
+  default     = "latest"
   description = "The sequence ID for the Terraform Enterprise version to pin (щк тще)"
 }
 

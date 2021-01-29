@@ -69,6 +69,14 @@ variable "redis_config" {
   })
 }
 
+//Iniial admin data
+variable "admin_name" {
+  default = "admin"
+}
+variable "admin_email" {}
+variable "admin_password" {}
+
+
 // tokens
 variable "user_token" {}
 variable "archivist_token" {}

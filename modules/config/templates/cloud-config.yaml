@@ -29,6 +29,15 @@ write_files:
   encoding: b64
   content: ${replicated-conf}
 
+# Initial admin creation script - to be called from install
+# Or separate :-)
+- path: /root/initial_admin_sh
+  owner: root:root
+  permissions: "0555"
+  encoding: b64
+  content: ${initial_admin_sh}
+
+
 # Package install for ubuntu
 packages:
 - jq

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Initial user provision
+# For Ubuntu-based systems
+cat > /home/ubuntu/initial_admin_user.json <<EOF
+{
+  "username": "${admin_name}",
+  "email": "${admin_email}",
+  "password": "${admin_password}"
+}
+EOF
+
+INITIAL_TOKEN=$(replicated admin retrieve-iact | tr -d '\r')
+
+# we have -k below as we are going to access LOCAL addres
+# potentially not always SSL correct 
+curl -k --header "Content-Type: application/json" --request POST --data-binary "@/home/ubuntu/initial_admin_user.json" https://${host}/admin/initial-admin-user?token=$INITIAL_TOKEN
+

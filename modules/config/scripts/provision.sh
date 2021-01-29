@@ -63,6 +63,9 @@ while ! curl -ksfS --connect-timeout 5 https://$private_ip/_health_check; do
     sleep 5
 done
 
+# Create admin user
+bash /root/initial_admin_sh
+
 # end script
 NOW=$(date +"%FT%T")
 duration=$SECONDS

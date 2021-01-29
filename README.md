@@ -59,7 +59,7 @@ You can read more about service account keys in [Google's documentation](https:/
 - [x] test TFE behind LB
 - [x] test VCS integration
 - [x] update README
-- [ ] add initial admin deployment
+- [x] add initial admin deployment
 - [ ] add second node
 - [ ] update README
 - [ ] destroy all and re-run using instructions, fix README if required

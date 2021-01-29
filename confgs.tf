@@ -42,6 +42,11 @@ resource "random_id" "backup_token" {
   byte_length = 16
 }
 
+resource "random_password" "admin_password" {
+  length  = 18
+  special = true
+}
+
 
 module "config" {
   source = "./modules/config"
@@ -57,6 +62,10 @@ module "config" {
   channel_id       = var.channel_id
 
   redis_config = module.redis_gcp.redis_config
+
+  admin_name     = var.admin_name
+  admin_email    = var.admin_email
+  admin_password = random_password.admin_password.result
 
   user_token                      = random_id.user_token.hex
   archivist_token                 = random_id.archivist_token.hex

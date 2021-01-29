@@ -18,9 +18,9 @@ module "network_gcp" {
 }
 
 ## Debug intermediate output 
-output "network_gcp" {
-  value = module.network_gcp
-}
+# output "network_gcp" {
+#   value = module.network_gcp
+# }
 
 # Network : Firewall
 module "firewall_gcp" {
@@ -47,9 +47,9 @@ module "lb_gcp" {
 }
 
 ## Debug intermediate output 
-output "lb_gcp" {
-  value = module.lb_gcp
-}
+# output "lb_gcp" {
+#   value = module.lb_gcp
+# }
 
 # Network : DNS CloudFlare
 # Note - depends from Load-Balancer and computing 
@@ -81,9 +81,9 @@ module "db_gcp" {
 }
 
 ## Debug intermediate output 
-output "db_gcp" {
-  value = module.db_gcp.postgres_config
-}
+# output "db_gcp" {
+#   value = module.db_gcp.postgres_config
+# }
 
 #  External Services : Onject Storage
 module "objectstorage_gcp" {
@@ -93,9 +93,9 @@ module "objectstorage_gcp" {
 }
 
 ## Debug intermediate output 
-output "objectstorage_gcp_config" {
-  value = module.objectstorage_gcp.object_storage_config
-}
+# output "objectstorage_gcp_config" {
+#   value = module.objectstorage_gcp.object_storage_config
+# }
 
 #  External Services : Redis ( Memorystore)
 module "redis_gcp" {
@@ -107,7 +107,9 @@ module "redis_gcp" {
 
 
 #=========================================================================
+#=========================================================================
 # Configs are in a separate file as it contains a lot of small definitions
+#-------------------------------------------------------------------------
 #-------------------------------------------------------------------------
 
 # Certificate : SSL from Let'sEncrypt
@@ -121,9 +123,9 @@ module "sslcert_letsencrypt" {
 }
 
 ## Debug intermediate output 
-output "sslcert_letsencrypt" {
-  value = module.sslcert_letsencrypt
-}
+# output "sslcert_letsencrypt" {
+#   value = module.sslcert_letsencrypt
+# }
 
 #=========================================================================
 # Computing resources
@@ -141,9 +143,9 @@ module "compute_gcp" {
 }
 
 ## Debug intermediate output 
-output "compute_gcp" {
-  value = module.compute_gcp
-}
+# output "compute_gcp" {
+#   value = module.compute_gcp
+# }
 
 module "compute_instance_group" {
   source           = "./modules/compute_instance_group/"
@@ -153,8 +155,8 @@ module "compute_instance_group" {
 }
 
 ## Debug intermediate output 
-output "compute_instance_group" {
-  value = module.compute_instance_group
-}
+# output "compute_instance_group" {
+#   value = module.compute_instance_group
+# }
 
 

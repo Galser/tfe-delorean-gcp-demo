@@ -18,3 +18,14 @@ output "cloudinit" {
   value       = data.template_cloudinit_config.cloud_init_config.rendered
   description = "Rendered cloud-init templates to pass to primary instances."
 }
+
+
+output "admin_user_data" {
+  description = "Admin user data"
+  value = {
+    name     = var.admin_name
+    email    = var.admin_email
+    password = var.admin_password
+  }
+
+}

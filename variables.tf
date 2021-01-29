@@ -73,4 +73,12 @@ variable "release_sequence" {
 variable "channel_id" {
   default = "default"
 }
-// 
+
+// Inital admin
+//Iniial admin data
+variable "admin_name" {
+  default = "admin"
+}
+variable "admin_email" {}
+
+

@@ -13,11 +13,11 @@ data "template_file" "cloud_init_config" {
   vars = {
     #    tfe_install_url = var.tfe_install_url
     #    distribution    = var.distribution
-    license_b64    = filebase64(var.license_file)
-    install_tfe_sh = base64encode(file("${path.module}/scripts/provision.sh"))
-
-    replicated-conf = base64encode(data.template_file.replicated_config.rendered)
-    tfe_conf        = base64encode(data.template_file.tfe_config.rendered)
+    license_b64      = filebase64(var.license_file)
+    initial_admin_sh = base64encode(data.template_file.initial_admin_script.rendered)
+    install_tfe_sh   = base64encode(file("${path.module}/scripts/provision.sh"))
+    replicated-conf  = base64encode(data.template_file.replicated_config.rendered)
+    tfe_conf         = base64encode(data.template_file.tfe_config.rendered)
   }
 }
 
@@ -44,6 +44,18 @@ data "template_file" "replicated_config" {
     channel_id                  = var.channel_id
   }
 }
+
+data "template_file" "initial_admin_script" {
+  template = file("${path.module}/templates/initial_admin_script.sh.tmpl")
+
+  vars = {
+    admin_name     = var.admin_name
+    admin_password = var.admin_password
+    admin_email    = var.admin_email
+    host           = "127.0.0.1"
+  }
+}
+
 
 data "template_file" "tfe_config" {
   template = file("${path.module}/templates/tfe-settings.json.tmpl")

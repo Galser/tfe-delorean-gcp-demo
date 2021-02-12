@@ -44,7 +44,8 @@ resource "random_id" "backup_token" {
 
 resource "random_password" "admin_password" {
   length  = 18
-  special = true
+  // special = true
+  special = false // for some symbols - my JSON generation fails
 }
 
 

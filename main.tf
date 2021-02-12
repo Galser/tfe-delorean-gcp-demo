@@ -35,9 +35,10 @@ module "firewall_gcp" {
 # defined below in the code
 # Network : LB
 module "lb_gcp" {
-  source           = "./modules/lb_gcp"
-  name             = var.tfe_name
-  instance_group   = module.compute_instance_group.link
+  source = "./modules/lb_gcp"
+  name   = var.tfe_name
+  // instance_group   = module.compute_instance_group.link // 1 instance 
+  instance_group   = module.compute_templated_gcp.managed_instance_group
   project          = var.project
   ssl_certificates = [module.sslcert_letsencrypt.gcp_cert_link]
   // ! list ^^^
@@ -62,7 +63,7 @@ module "dns_cloudflare" {
   #  cname_target = module.lb_aws.fqdn
   frontend_ip = module.lb_gcp.lb_ip
 
-  backend_ip = module.compute_gcp.instance_data.public_ip
+  //backend_ip = module.compute_gcp.instance_data.public_ip
 }
 
 
@@ -129,7 +130,7 @@ module "sslcert_letsencrypt" {
 
 #=========================================================================
 # Computing resources
-module "compute_gcp" {
+/*module "compute__gcp" {
   source            = "./modules/compute_gcp/"
   name              = var.tfe_name
   availabilityZone  = var.availabilityZone
@@ -141,19 +142,36 @@ module "compute_gcp" {
   tfe_config        = module.config.tfe_config
   cloudinit         = module.config.cloudinit
 }
+*/
+
+module "compute_templated_gcp" {
+  source = "./modules/compute_templated_gcp//"
+  name   = var.tfe_name
+  //availabilityZone  = var.availabilityZone
+  region            = var.region
+  machines_count    = var.machines_count
+  key_path          = var.key_path
+  public_key_path   = var.public_key_path
+  network           = module.network_gcp.network.name
+  subnetwork        = module.network_gcp.network.subnet
+  replicated_config = module.config.replicated_config
+  tfe_config        = module.config.tfe_config
+  cloudinit         = module.config.cloudinit
+}
+
 
 ## Debug intermediate output 
 # output "compute_gcp" {
 #   value = module.compute_gcp
 # }
 
-module "compute_instance_group" {
+/*module "compute_instance_group" {
   source           = "./modules/compute_instance_group/"
   name             = var.tfe_name
   availabilityZone = var.availabilityZone
   instances        = [module.compute_gcp.instance_data.link]
 }
-
+*/
 ## Debug intermediate output 
 # output "compute_instance_group" {
 #   value = module.compute_instance_group

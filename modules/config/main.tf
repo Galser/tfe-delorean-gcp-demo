@@ -52,6 +52,7 @@ data "template_file" "initial_admin_script" {
     admin_name     = var.admin_name
     admin_password = var.admin_password
     admin_email    = var.admin_email
+    user_token     = var.user_token 
     host           = "127.0.0.1"
   }
 }
@@ -75,6 +76,8 @@ data "template_file" "tfe_config" {
 
     redis_host = var.redis_config.host
     redis_port = var.redis_config.port
+
+    active_active_flag = "1"
 
     user_token                      = var.user_token
     archivist_token                 = var.archivist_token

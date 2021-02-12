@@ -9,7 +9,10 @@ cat > /home/ubuntu/initial_admin_user.json <<EOF
 }
 EOF
 
-INITIAL_TOKEN=$(replicated admin retrieve-iact | tr -d '\r')
+# Following line below, cna be used for 1-node non active-active install
+# INITIAL_TOKEN=$(replicated admin retrieve-iact | tr -d '\r')
+
+INITIAL_TOKEN="${user_token}"
 
 # we have -k below as we are going to access LOCAL addres
 # potentially not always SSL correct 

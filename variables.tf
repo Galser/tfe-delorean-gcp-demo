@@ -59,6 +59,12 @@ variable "db_admin" {
   default = "hashicorp"
 }
 
+// Counts and sizes 
+variable "machines_count" {
+  description = "How many VMs (instances) in a managed instance group"
+  default     = 1
+}
+
 
 // License & releases
 variable "license_file" {

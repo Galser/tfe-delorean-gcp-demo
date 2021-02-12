@@ -1,3 +1,3 @@
 output "lb_ip" {
-  value = google_compute_global_address.default.address
+  value = google_compute_global_address.tfe.address
 }

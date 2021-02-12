@@ -49,6 +49,32 @@ You can read more about service account keys in [Google's documentation](https:/
 
 ## Perform deploy
 
+## Destruction specific in GCP
+
+Sometimes destruction in GCP can fail , 3 scenarios so far : 
+
+- Google API reporting the VM (instance) already deleted but CloudSQL still thnks that it is using DB : 
+
+```
+Error: Error when reading or editing Database: googleapi: Error 400: Invalid request: failed to delete database "tfeaa-superb-deer". Detail: pq: database "tfeaa-superb-deer" is being accessed by other users. (Please use psql client to delete database that is not owned by "cloudsqlsuperuser")
+., invalid
+```
+
+- Reaching DB limits : 
+
+```
+pq: remaining connection slots are reserved for non-replication superuser connection
+```
+
+- User deletion in VM : 
+
+```
+Error: Error, failed to deleteuser hashicorp in instance tfeaa-superb-deer:
+```
+
+Eventually it destroys infra, but..it make take 2 executions, perhaprs I need to add some timeouts. 
+
+
 # TODO
 - [x] import code for compute infrastructure
 - [x] add DB deploy
@@ -60,7 +86,7 @@ You can read more about service account keys in [Google's documentation](https:/
 - [x] test VCS integration
 - [x] update README
 - [x] add initial admin deployment
-- [ ] add second node
+- [x] add second node
 - [ ] update README
 - [ ] destroy all and re-run using instructions, fix README if required
 

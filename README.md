@@ -2,7 +2,9 @@
 TFE Active-Active aka DeLorean GCP test installation in production mode with external servics behind load-balancer with a valid certificate from Let's Encrypt
 
 # Purpose
-This repo contains all the code and instructions on how to install a TFE (Prod) version 4 Active-Active (codename : DeLorean) with a Valid Certificate in an Googlce Cloud Computing Environment
+This repo contains all the code and instructions on how to install a TFE (Prod) version 4 Active-Active (codename : DeLorean) with a Valid Certificate in an Googlce Cloud Computing Environment. 
+
+> Note : in present moment only 2-nodes setups are supported, it's not a limitation of the module - you can defiend whatever numebr you want, but our code is not up to realy multi-multi modes setup yet. 
 
 # Requirements
 This repository assumes general knowledge about Terraform and Terrafrom CLI v0.13+ , if not, please get yourself accustomed first by going through [getting started guide for Terraform](https://learn.hashicorp.com/terraform?track=getting-started#getting-started). We also going to use GCP as our infrastructure provider, DNS service of CloudFlare and SSL Certificates from LetsEncrypt.
@@ -14,7 +16,7 @@ To learn more about the mentioned above tools and technologies - please check se
 
 ## Dependencies 
 
-Module depends on [Google Provider](https://registry.terraform.io/providers/hashicorp/google/latest)
+Module depends on [Google Provider](https://registry.terraform.io/providers/hashicorp/google/latest). It is also using "Let's Encrypt" project for SSL certificates generation on the fly and CloudFlare DNS for all domain operations. 
 
 # How-to
 
@@ -46,8 +48,29 @@ You can read more about service account keys in [Google's documentation](https:/
   export CLOUDFLARE_DNS_API_TOKEN=YOUR_TOKEN_HERE
   ```
 
+## Define your installation details
 
-## Perform deploy
+Repository is coming with the example `terraform-tfvars.example` . Upon cloning the repo, please copy it to the fikle named for example : `terraform.tfvars` and adjust according to you need. At least you will need to add project name and GCO project credentials JSON, and probably - domain name for your DNS on CloudFlare. Alternatively - if you are using other DNS provider -  you can clone the  module "modules/dns_cloudflare", rewrite just a but of code for your own provider and change the `dns_provider` parameter for the "sslcert_letsencrypt" in module call in "main.tf" , around lines 117-124 : 
+
+```Terraform
+116 # Certificate : SSL from Let'sEncrypt
+117 module "sslcert_letsencrypt" {
+118
+119   source = "./modules/sslcert_letsencrypt"
+120
+121   host         = var.tfe_name
+122   domain       = var.site_domain
+123   dns_provider = "cloudflare"
+124 }
+```
+
+For SSL management ACME Certificate and Account Provider module is used, so to to get teh full list of the supported DNS provides or some specific ot its usage check this page : https://registry.terraform.io/providers/vancluever/acme/latest/docs 
+
+> Note : `terraform.tfvars` can be used to define the required variables for the case of plans/runs initiated with TF CLI. If you intending to use this code in TFC/TFE you need to either rename the `terraform-tfvars.example`  into `terraform.auto.tfvars` or manually define appropriate values in the **Variables** section of the workspace.
+
+## Perform inital deploy of infra and 1 computing node
+
+
 
 ## Destruction specific in GCP
 

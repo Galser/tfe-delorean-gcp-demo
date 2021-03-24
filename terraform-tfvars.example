@@ -1,0 +1,48 @@
+# GCP data
+# ------------------------------------------------------------------
+# Existing project name 
+project = "your-project-name"
+# Path to the GCP credentials file
+credentials_file = "~/Keys/your-project-name-0c6bc7bb90cc.json"
+# Region to deploy, here - Germany/Frankfurt -> europe-west3
+region           = "europe-west4"
+availabilityZone = "europe-west3-a"
+
+# ------------------------------------------------------------------
+# Sizing - HOW many instances should we start first
+# Please note that right now TFE Delorean (Active-Active)
+# Should start always with ONE node, and after DB and Redis
+# had been initialized - you can change this parameter to "2",
+# e.g. scale-up.
+machines_count = 1
+
+# Version and licenses
+# ------------------------------------------------------------------
+# What verstion to deploy
+# For active-active there is no "latest stable " yet.
+# You always MUST specify version
+release_sequence = "77" // Active-Active from December
+
+# Full path to the license  file
+# Note - license should have Active-Active enabled
+license_file = "~/your_license.rli"
+
+# DNS settings. 
+# ------------------------------------------------------------------
+# domain that is avaible in your account
+# in CloudFlare, or... clone the  module "modules/dns_cloudflare"
+# and user your own provider. IN that case you will also need to 
+# change the `dns_provider` parameter for the "sslcert_letsencrypt" 
+# module call in "main.tf" , around lines 117-124
+site_domain = "example.com"
+tfe_name    = "tfe-aa"
+
+# ------------------------------------------------------------------
+# SSH key to deploy on instance (default pasth for UNIX systems)
+key_path        = "~/.ssh/id_rsa"
+public_key_path = "~/.ssh/id_rsa.pub"
+
+# TFE Admin data , email and name of accoutn
+# Password is going to be generate and display as part of output
+admin_email = "youremaiL@yourdomain.here"
+admin_name  = "admin"

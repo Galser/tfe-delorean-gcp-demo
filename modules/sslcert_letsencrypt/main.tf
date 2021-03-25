@@ -40,13 +40,13 @@ resource "local_file" "ssl_cert_bundle_file" {
   filename          = "./site_ssl_cert_bundle.pem"
 }
 
-
 # Certificate : Upload into GCP
 resource "google_compute_ssl_certificate" "tfe" {
   name_prefix = "${var.host}-tfe-"
   description = "TFE LB cert"
   private_key = acme_certificate.certificate.private_key_pem
-  certificate = acme_certificate.certificate.certificate_pem
+	#  certificate = acme_certificate.certificate.certificate_pem
+  certificate =	"${acme_certificate.certificate.certificate_pem}${acme_certificate.certificate.issuer_pem}"
 
   lifecycle {
     create_before_destroy = true

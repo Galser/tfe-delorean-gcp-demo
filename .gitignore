@@ -37,3 +37,6 @@ override.tf.json
 
 # MacOS Specific
 .DS_Store
+
+# TF bundles 
+terraform_0.13.6-bundle*

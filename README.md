@@ -239,7 +239,9 @@ Error: Error, failed to delete user hashicorp in instance tfeaa-superb-deer:
 Eventually it destroys infra, but..it make take 2 executions, perhaprs I need to add some timeouts. 
 
 
-# TODO
+# TOD
+
+- [ ] add GCP part about enabling services ( https://cloud.google.com/service-usage/docs/enable-disable )
 - [ ] fix spelling errors, update README
 
 # DONE

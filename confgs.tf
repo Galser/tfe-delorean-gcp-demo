@@ -80,3 +80,7 @@ module "config" {
   backup_token                    = random_id.backup_token.hex
 }
 
+
+output "backup_token" {
+ value = random_id.backup_token.hex
+}

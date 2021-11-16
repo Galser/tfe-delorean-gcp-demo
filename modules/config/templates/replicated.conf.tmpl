@@ -13,7 +13,7 @@
     "TlsBootstrapKey":              "${tls_boostrap_key}",
 %{ endif ~}
 %{ if release_sequence != "latest" ~}
-    "ReleaseSequence":                   "${release_sequence}",
+    "ReleaseSequence":                   ${release_sequence},
 %{ endif ~}
 %{ if channel_id != "default" ~}
     "LicenseBootstrapChannelID":         "${channel_id}",

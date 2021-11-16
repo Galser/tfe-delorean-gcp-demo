@@ -1,3 +1,6 @@
+# plugins
+.plugins/
+
 # Local .terraform directories
 **/.terraform/*
 

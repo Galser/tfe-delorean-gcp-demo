@@ -5,9 +5,9 @@ terraform {
 }
 
 # ========================
-data "google_compute_zones" "available" {
-  region = var.region
-}
+#data "google_compute_zones" "available" {
+#  region = var.region
+#}
 
 data "google_compute_image" "image" {
   family  = var.instance_config.image_family

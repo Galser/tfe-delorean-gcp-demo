@@ -14,6 +14,14 @@ variable "region" {
 variable "availabilityZone" {
   type = string
 }
+
+variable "remoteregion" {
+  type = string
+}
+
+variable "remotegentszone" {
+  type = string
+}
 // end of GCP data
 
 // TFE DNS Settings
@@ -87,4 +95,6 @@ variable "admin_name" {
 }
 variable "admin_email" {}
 
-
+variable "agents_machine_count" {
+	default = 2 
+}

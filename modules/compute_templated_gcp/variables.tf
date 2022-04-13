@@ -16,7 +16,7 @@ variable "author" {
 variable "instance_type" {
   type        = string
   description = "Type of instance"
-  default     = "n1-standard-4"
+  default     = "n2-standard-8"
 }
 
 # Disabled for now
@@ -81,7 +81,7 @@ variable "instance_config" {
     type           = string
   })
   default = {
-    machine_type   = "n1-standard-2"
+    machine_type   = "n2-standard-8"
     image_family   = "ubuntu-1804-lts"
     image_project  = "ubuntu-os-cloud"
     boot_disk_size = 60

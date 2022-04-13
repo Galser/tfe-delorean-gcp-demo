@@ -17,6 +17,7 @@ module "network_gcp" {
   region = var.region
 }
 
+
 ## Debug intermediate output 
 # output "network_gcp" {
 #   value = module.network_gcp
@@ -78,6 +79,7 @@ module "db_gcp" {
   name       = var.tfe_name
   username   = var.db_admin
   region     = var.region
+  tier       = "db-custom-4-16384"
   network_id = module.network_gcp.network.id
 }
 
@@ -144,6 +146,7 @@ module "sslcert_letsencrypt" {
 }
 */
 
+# TFE Server
 module "compute_templated_gcp" {
   source = "./modules/compute_templated_gcp//"
   name   = var.tfe_name
@@ -157,7 +160,37 @@ module "compute_templated_gcp" {
   replicated_config = module.config.replicated_config
   tfe_config        = module.config.tfe_config
   cloudinit         = module.config.cloudinit
+	instance_config   = {
+    machine_type   = "n2-standard-8"
+    image_family   = "ubuntu-1804-lts"
+    image_project  = "ubuntu-os-cloud"
+    boot_disk_size = 80
+    type           = "pd-ssd"
+	}
 }
+
+## agents
+
+# Region 1
+
+
+module "compute_gcp_europe" {
+  count             = var.agents_machine_count
+  source            = "./modules/compute_gcp/"
+  name              = "${var.tfe_name}-agent-${count.index}"
+  availabilityZone  = var.availabilityZone
+  key_path          = var.key_path
+  public_key_path   = var.public_key_path
+  network           = module.network_gcp.network.name
+  subnetwork        = module.network_gcp.network.subnet
+  instance_type     = "n1-standard-4"
+  replicated_config = ""
+  tfe_config        = ""
+  cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
+}
+
+
+
 
 
 ## Debug intermediate output 

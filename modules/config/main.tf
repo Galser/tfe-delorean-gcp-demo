@@ -53,7 +53,8 @@ data "template_file" "initial_admin_script" {
     admin_password = var.admin_password
     admin_email    = var.admin_email
     user_token     = var.user_token 
-    host           = "127.0.0.1"
+    //host           = "127.0.0.1"
+    host           = var.hostname
   }
 }
 

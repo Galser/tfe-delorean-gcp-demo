@@ -28,6 +28,17 @@ provider "google-beta" {
   zone    = var.availabilityZone
 }
 
+
+provider "google" {
+  alias = "remotesite"
+  credentials = file(var.credentials_file)
+
+  project = var.project
+  region  = var.remoteregion
+  zone    = var.remotegentszone
+}
+
+
 provider "acme" {
   # PRODUCTION
   #  version    = "~> 1.0"

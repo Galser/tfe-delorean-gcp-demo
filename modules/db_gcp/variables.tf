@@ -42,3 +42,9 @@ variable "network_id" {
   type        = string
   description = "ID of network to use"
 }
+
+variable "tier" {
+  type = string
+  description = "GCP DB tier"
+  default = "db-custom-2-7680"
+}

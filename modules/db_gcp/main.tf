@@ -68,7 +68,8 @@ resource "google_sql_database_instance" "tfemaster" {
     # Second-generation instance tiers are based on the machine
     # type. See argument reference below.
     disk_size         = 50
-    tier              = "db-f1-micro" # or ? "db-g1-small"
+#    tier              = "db-f1-micro" # or ? "db-g1-small"
+    tier              = var.tier # "db-custom-2-7680" # or ? "db-g1-small"
     availability_type = "REGIONAL"
     ip_configuration {
       ipv4_enabled    = false

@@ -186,7 +186,8 @@ module "compute_gcp_europe" {
   instance_type     = "n1-standard-4"
   replicated_config = ""
   tfe_config        = ""
-  cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
+	#cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
+	cloudinit				  = ""
 }
 
 

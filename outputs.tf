@@ -12,3 +12,7 @@ output "data_for_tfe" {
     admin_user_data      = module.config.admin_user_data
   }
 }
+
+output "agents_instances" {
+	value = module.compute_gcp_europe.*.instance_data
+}

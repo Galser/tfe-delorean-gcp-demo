@@ -14,6 +14,16 @@ EOF
 
 INITIAL_TOKEN="${user_token}"
 
+# Double-check that TFE is ready to server requests in general
+while ! curl -ksfS --connect-timeout 5 https://${host}/_health_check; do
+    sleep 3
+done
+
+# Make sure that admin part of TFE ready to accept requests 
+while ! curl -k -I "https://${host}/admin" 2>&1 | grep -w "200\|301"; do 
+    sleep 5
+done
+
 # we have -k below as we are going to access LOCAL addres
 # potentially not always SSL correct 
 curl -k --header "Content-Type: application/json" --request POST --data-binary "@/home/ubuntu/initial_admin_user.json" https://${host}/admin/initial-admin-user?token=$INITIAL_TOKEN

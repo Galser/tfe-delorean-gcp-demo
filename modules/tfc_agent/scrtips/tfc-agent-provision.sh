@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
 # settings
-AGENT_VER=1.1.1
+AGENT_VER=1.2.2
 # Environment vars
 # TFE adress
-export TFC_ADDRESS="https://tfe-tfagents-tes3.guselietov.com"
+export TFC_ADDRESS="https://tfescaletest.guselietov.com/"
 # Our organzization pool's token
-export TFC_AGENT_TOKEN="HCIRjSSdZ7t3VA.atlasv1.6t6kf5zHl6ziTWqG0aOOH3Jzj4eZaRG9vusfgVI8dUujYcLjywGmMF7yquOooQqj3Ho"
+export TFC_AGENT_TOKEN="H2dm8CJyp762cQ.atlasv1.EgDGJ2PeXbumj2XvZioNHtQaOQSuexjMLoyt3dLt8MMWl2xP2rruzQmSxtzAR5Nrrac"
 
 which unzip 2>/dev/null || {
     sudo apt-get update

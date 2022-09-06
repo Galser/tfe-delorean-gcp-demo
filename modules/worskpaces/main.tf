@@ -5,15 +5,15 @@
 
 # Variables
 variable "hostname" {
-  default = "tfetelemetrytest.guselietov.com"
+  default = "tfescaletest.guselietov.com"
 }
 
 variable "org" {
-  default = "europe"
+  default = "zoo"
 }
 
 variable "oauth_token" {
-  default     = "ot-i4fcnm49cEPavDT3"
+  default     = "ot-j1r26pGwcFVY2fb4"
   description = "OAuth token from the VCS provider settings in TFE"
 }
 
@@ -22,7 +22,7 @@ variable "repo_identifier" {
 }
 
 variable "agent_pool_id" {
-  default = "apool-DjsEDgNqQL4zwhNn"
+  default = "apool-ri4EgLfzTStjGMJX"
 }
 
 
@@ -48,12 +48,12 @@ provider "tfe" {
 resource "tfe_workspace" "ws-test-main" {
   count = local.resources_count
   #   name         = ${local.workspace_to_create} + "_"+"${count.index}"
-	# agent_pool_id  =  local.agent_pool_id
+	agent_pool_id  =  local.agent_pool_id
   name           = format("%s_%03d", local.workspace_to_create, count.index)
   organization   = var.org
   auto_apply     = true
   queue_all_runs = true
-  execution_mode = "remote" # agent
+  execution_mode = "agent" # "remote" # agent
   vcs_repo {
     identifier         = var.repo_identifier
     ingress_submodules = false

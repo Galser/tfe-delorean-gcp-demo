@@ -79,7 +79,7 @@ module "db_gcp" {
   name       = var.tfe_name
   username   = var.db_admin
   region     = var.region
-  tier       = "db-custom-4-16384"
+  tier       = "db-custom-8-32768"
   network_id = module.network_gcp.network.id
 }
 
@@ -186,8 +186,8 @@ module "compute_gcp_europe" {
   instance_type     = "n1-standard-4"
   replicated_config = ""
   tfe_config        = ""
-	#cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
-	cloudinit				  = ""
+	cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
+	#cloudinit				  = ""
 }
 
 

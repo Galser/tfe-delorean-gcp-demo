@@ -1,0 +1,17 @@
+{
+  "data": {
+    "attributes": {
+      "message": "API triggerd run"
+    },
+    "type":"runs",
+    "relationships": {
+      "workspace": {
+        "data": {
+          "type": "workspaces",
+          "id": "ws-hgUjLyoH9mM8y852"
+        }
+      }
+    }
+  }
+}
+

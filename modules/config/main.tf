@@ -72,7 +72,8 @@ data "template_file" "tfe_config" {
     pg_extra_params = var.postgres_config.extra_params
 
     gcs_bucket      = var.object_store_config.bucket
-    gcs_credentials = var.object_store_config.credentials
+#    gcs_credentials = var.object_store_config.credentials
+    gcs_credentials = "" # temporary change to test instance service account profile
     gcs_project     = var.object_store_config.project
 
     redis_host = var.redis_config.host

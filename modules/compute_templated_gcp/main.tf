@@ -14,38 +14,8 @@ data "google_compute_image" "image" {
   project = var.instance_config.image_project
 }
 
-
-/*resource "google_compute_instance" "ptfe" {
-
-  // we not using here config map
-  name         = var.name
-  machine_type = var.instance_type
-  zone         = var.availabilityZone
-  tags         = ["${var.name}-andrii", "tfe"]
-
-  boot_disk {
-    initialize_params {
-      image = var.image
-      size  = 80 // not alway fitting for experimetns in 40-50 as recommended
-    }
-  }
-
-
-  network_interface {
-    network    = var.network
-    subnetwork = var.subnetwork
-    access_config {
-    }
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:${file("${var.public_key_path}")}"
-    # user-data* -> Cloud Init Supported OS
-    user-data = var.cloudinit
-    #user-data-encoding = var.cloudinit.encoding
-  }
+data "google_compute_default_service_account" "default" {
 }
-*/
 
 resource "google_compute_health_check" "tfe-https-health-check" {
   name                = "${var.name}-tfe-health-check"
@@ -98,6 +68,11 @@ resource "google_compute_instance_template" "ptfe_main" {
     user-data = var.cloudinit
     //user-data-encoding = var.cloudinit.encoding
     ssh-keys = "ubuntu:${file("${var.public_key_path}")}" // ?
+  }
+
+  service_account {
+    email  = data.google_compute_default_service_account.default.email
+    scopes = ["cloud-platform"]
   }
 
   lifecycle {

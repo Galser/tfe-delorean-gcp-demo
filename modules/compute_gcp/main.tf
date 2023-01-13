@@ -15,7 +15,7 @@ resource "google_compute_instance" "ptfe" {
     initialize_params {
       image = var.image
       size  = 80 // not alway fitting for experimetns in 40-50 as recommended
-			type = "pd-ssd"
+      type  = "pd-ssd"
     }
   }
 

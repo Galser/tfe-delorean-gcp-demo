@@ -7,12 +7,12 @@
 
 output "data_for_tfe" {
   value = {
-		application_endpoint = "https://${var.tfe_name}.${var.site_domain}"
+    application_endpoint = "https://${var.tfe_name}.${var.site_domain}"
     loadbalancer_ip      = module.lb_gcp.lb_ip
     admin_user_data      = module.config.admin_user_data
   }
 }
 
 output "agents_instances" {
-	value = module.compute_gcp_europe.*.instance_data
+  value = module.compute_gcp_europe.*.instance_data
 }

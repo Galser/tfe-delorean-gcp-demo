@@ -43,7 +43,7 @@ resource "random_id" "backup_token" {
 }
 
 resource "random_password" "admin_password" {
-  length  = 18
+  length = 18
   // special = true
   special = false // for some symbols - my JSON generation fails
 }
@@ -82,5 +82,5 @@ module "config" {
 
 
 output "backup_token" {
- value = random_id.backup_token.hex
+  value = random_id.backup_token.hex
 }

@@ -160,13 +160,13 @@ module "compute_templated_gcp" {
   replicated_config = module.config.replicated_config
   tfe_config        = module.config.tfe_config
   cloudinit         = module.config.cloudinit
-	instance_config   = {
+  instance_config = {
     machine_type   = "n2-standard-8"
     image_family   = "ubuntu-1804-lts"
     image_project  = "ubuntu-os-cloud"
     boot_disk_size = 80
     type           = "pd-ssd"
-	}
+  }
 }
 
 ## agents
@@ -186,8 +186,8 @@ module "compute_gcp_europe" {
   instance_type     = "n1-standard-4"
   replicated_config = ""
   tfe_config        = ""
-	cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
-	#cloudinit				  = ""
+  cloudinit         = file("modules/tfc_agent/scrtips/tfc-agent-provision.sh")
+  #cloudinit				  = ""
 }
 
 

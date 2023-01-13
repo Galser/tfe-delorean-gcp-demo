@@ -95,9 +95,9 @@ resource "google_compute_instance_template" "ptfe_main" {
 
   metadata = {
     # user-data for cloud Init Supported OS
-    user-data          = var.cloudinit
+    user-data = var.cloudinit
     //user-data-encoding = var.cloudinit.encoding
-    ssh-keys           = "ubuntu:${file("${var.public_key_path}")}" // ?
+    ssh-keys = "ubuntu:${file("${var.public_key_path}")}" // ?
   }
 
   lifecycle {

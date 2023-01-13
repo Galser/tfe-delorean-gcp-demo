@@ -32,7 +32,7 @@ resource "random_pet" "workspace" {}
 locals {
   workspace_to_create = random_pet.workspace.id
   resources_count     = 100
-  agent_pool_id = var.agent_pool_id
+  agent_pool_id       = var.agent_pool_id
 }
 
 provider "tfe" {
@@ -48,7 +48,7 @@ provider "tfe" {
 resource "tfe_workspace" "ws-test-main" {
   count = local.resources_count
   #   name         = ${local.workspace_to_create} + "_"+"${count.index}"
-	agent_pool_id  =  local.agent_pool_id
+  agent_pool_id  = local.agent_pool_id
   name           = format("%s_%03d", local.workspace_to_create, count.index)
   organization   = var.org
   auto_apply     = true

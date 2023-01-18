@@ -6,7 +6,7 @@ terraform {
     }
     acme = {
       source  = "vancluever/acme"
-      version = "~> 2.0"			
+      version = "~> 2.0"
     }
   }
 }
@@ -30,7 +30,7 @@ provider "google-beta" {
 
 
 provider "google" {
-  alias = "remotesite"
+  alias       = "remotesite"
   credentials = file(var.credentials_file)
 
   project = var.project

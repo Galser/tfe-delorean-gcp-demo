@@ -21,6 +21,17 @@ variable "db_extensions_map" {
   }
 }
 
+
+variable "db_version" {
+  # GCS-notation Postgre engine version 
+  # https://cloud.google.com/sql/docs/postgres/admin-api/rest/v1beta4/SqlDatabaseVersion
+  # 
+  # For modern TFE (  September 2022+ ) is should be PG 12
+  # POSTGRES_12
+  # in future it can be POSTGRES_14
+  default = ""
+}
+
 variable "name" {
   type        = string
   description = "Name for DB and tags and etc"
@@ -44,7 +55,7 @@ variable "network_id" {
 }
 
 variable "tier" {
-  type = string
+  type        = string
   description = "GCP DB tier"
-  default = "db-custom-2-7680"
+  default     = "db-custom-2-7680"
 }

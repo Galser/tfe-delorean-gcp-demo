@@ -5,10 +5,10 @@ resource "random_pet" "bucket_name_suffix" {
 }
 
 resource "google_storage_bucket" "tfe" {
-  name          = "${var.name}-${random_pet.bucket_name_suffix.id}"
-  storage_class = "REGIONAL" // must be according
-  location      = var.location
-	uniform_bucket_level_access = true
-	force_destroy = true
+  name                        = "${var.name}-${random_pet.bucket_name_suffix.id}"
+  storage_class               = "REGIONAL" // must be according
+  location                    = var.location
+  uniform_bucket_level_access = true
+  force_destroy               = true
 }
 

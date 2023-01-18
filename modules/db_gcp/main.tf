@@ -1,4 +1,6 @@
 # Postgres GCP (CloudSQL) module code
+
+
 # Password
 resource "random_password" "password" {
   length           = 18
@@ -12,7 +14,8 @@ resource "random_pet" "dbname_suffix" {
 // let's ensure that DB name is up on
 // good standards
 locals {
-  db_name = "${join("", regexall("\\w+", var.name))}-${random_pet.dbname_suffix.id}"
+  db_name               = "${join("", regexall("\\w+", var.name))}-${random_pet.dbname_suffix.id}"
+  default_pg_db_version = "POSTGRES_12"
 }
 
 
@@ -55,9 +58,10 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 
 resource "google_sql_database_instance" "tfemaster" {
-  provider            = google-beta
-  name                = local.db_name
-  database_version    = "POSTGRES_9_6"
+  provider = google-beta
+  name     = local.db_name
+  #database_version    = "POSTGRES_9_6"
+  database_version    = (var.db_version == "") ? local.default_pg_db_version : var.db_version
   region              = var.region
   deletion_protection = false
 
@@ -67,8 +71,8 @@ resource "google_sql_database_instance" "tfemaster" {
   settings {
     # Second-generation instance tiers are based on the machine
     # type. See argument reference below.
-    disk_size         = 50
-#    tier              = "db-f1-micro" # or ? "db-g1-small"
+    disk_size = 50
+    #    tier              = "db-f1-micro" # or ? "db-g1-small"
     tier              = var.tier # "db-custom-2-7680" # or ? "db-g1-small"
     availability_type = "REGIONAL"
     ip_configuration {

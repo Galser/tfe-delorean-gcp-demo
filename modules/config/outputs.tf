@@ -22,7 +22,7 @@ output "cloudinit" {
 
 output "admin_user_data" {
   description = "Admin user data"
-	sensitive = false
+  sensitive   = false
   value = {
     name     = var.admin_name
     email    = var.admin_email

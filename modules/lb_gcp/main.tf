@@ -6,9 +6,9 @@ terraform {
 }
 
 resource "google_compute_global_address" "tfe" {
-  project      = var.project
-  name         = "${var.name}-address"
-#  ip_version   = "IPV4"
+  project = var.project
+  name    = "${var.name}-address"
+  #  ip_version   = "IPV4"
   address_type = "EXTERNAL"
 }
 

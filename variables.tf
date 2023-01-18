@@ -96,5 +96,5 @@ variable "admin_name" {
 variable "admin_email" {}
 
 variable "agents_machine_count" {
-	default = 2 
+  default = 2
 }

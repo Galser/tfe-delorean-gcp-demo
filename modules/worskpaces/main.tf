@@ -4,39 +4,26 @@
 
 
 # Variables
-variable "hostname" {
-  default = "tfescaletest.guselietov.com"
-}
 
-variable "org" {
-  default = "zoo"
-}
-
-variable "oauth_token" {
-  default     = "ot-j1r26pGwcFVY2fb4"
-  description = "OAuth token from the VCS provider settings in TFE"
-}
-
+# GitHub repo fro testing
 variable "repo_identifier" {
   default = "Galser/tf-large-state-generator-a"
 }
 
-variable "agent_pool_id" {
-  default = "apool-ri4EgLfzTStjGMJX"
-}
 
+resource "random_pet" "org" {}
 
 resource "random_pet" "workspace" {}
 
 # LOCALS
 locals {
+  organization_name   = random_pet.org.id
   workspace_to_create = random_pet.workspace.id
-  resources_count     = 100
-  agent_pool_id       = var.agent_pool_id
+  resources_count     = var.workspace_count
 }
 
 provider "tfe" {
-  hostname = var.hostname
+  hostname = var.tfe_hostname
   #  token    = var.token. --> oinly if we really want it
   #  for the test we assume it is coming from TFE_TOKEN env var
   #  version  = "~> 0.15.0"
@@ -44,19 +31,34 @@ provider "tfe" {
 
 # RESOURCES 
 
+resource "tfe_organization" "test" {
+  name  = local.organization_name
+  email = var.admin_email
+}
+
+resource "tfe_oauth_client" "github" {
+  name             = "github-oauth-client"
+  organization     = tfe_organization.test.id
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.github_auth_token
+  service_provider = "github"
+}
+
+
 # Creating workspace(s) 1 
 resource "tfe_workspace" "ws-test-main" {
   count = local.resources_count
   #   name         = ${local.workspace_to_create} + "_"+"${count.index}"
-  agent_pool_id  = local.agent_pool_id
+  # agent_pool_id  = local.agent_pool_id 
   name           = format("%s_%03d", local.workspace_to_create, count.index)
-  organization   = var.org
+  organization   = tfe_organization.test.id
   auto_apply     = true
   queue_all_runs = true
-  execution_mode = "agent" # "remote" # agent
+  execution_mode = "remote" # "remote" # agent
   vcs_repo {
     identifier         = var.repo_identifier
     ingress_submodules = false
-    oauth_token_id     = var.oauth_token
+    oauth_token_id     = tfe_oauth_client.github.oauth_token_id
   }
 }

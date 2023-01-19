@@ -93,6 +93,7 @@ variable "channel_id" {
 variable "admin_name" {
   default = "admin"
 }
+
 variable "admin_email" {}
 
 variable "agents_machine_count" {

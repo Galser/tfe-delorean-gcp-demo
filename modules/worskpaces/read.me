@@ -1,0 +1,32 @@
+# Workspace generator for some tests
+
+This project will alow you to create some (large) amount of workspaces backed by my GitHub repo,  and (potentially) attach tem into agent pools
+
+# How to use
+
+1. Define required variables (see section below)
+2. Run `terraform apply`
+3. Enjoy!
+
+# Requirements 
+
+Define following environment variables before run : 
+
+- **TF_VAR_github_auth_token** - GitHub auth token
+- **TFE_TOKEN** - token for authentication to TFE ( preferrably user level)
+
+Also please define following variables in the `terraform.tfvars` : 
+
+- *tfe_hostname*  - hostname of TFE instance
+- *admin_email* - email for admin user
+- *workspace_count* - workspaces count to create
+
+# Run apply
+
+Run `terrafrom apply` and wait for applies to finish or ..well, proceed with your tasks
+
+
+
+
+
+
